@@ -20,7 +20,7 @@ def get_connection():
             user=secrets["connections"]["postgres"]["user"],
             password=secrets["connections"]["postgres"]["password"]
         )
-        st.subheader("Willkommen im Warenwirtschaftssystem von 🛒\n Alex, Domenic und Marie")
+        st.subheader("Willkommen im Warenwirtschaftssystem von 🛒\n your name")
         st.success("Datenbank 'WWS' wurde erfolgreich verbunden!")
         return conn
     except Exception as e:
@@ -30,7 +30,7 @@ def get_connection():
 conn = get_connection()
 cur = conn.cursor()
 
-notebook_path = Path("your jupyter notebook path.ipynb")
+notebook_path = Path("your jupyter notebook path.pynb")
 image_folder = notebook_path.parent  # Bild liegt im gleichen Ordner wie Notebook
 
 # Notebook laden
@@ -70,4 +70,5 @@ for cell in nb.cells:
                 if "text/plain" in data:
                     styled_output = f"<span style='color:Gainsboro; font-weight: bold;'>{data['text/plain']}</span>"
                     st.markdown(styled_output, unsafe_allow_html=True)
+
 
