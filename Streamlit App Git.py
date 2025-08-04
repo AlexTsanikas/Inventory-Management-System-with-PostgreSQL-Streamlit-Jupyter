@@ -12,7 +12,7 @@ from streamlit.components.v1 import html
 # --- DB-Verbindung ---
 def get_connection():
     try:
-        secrets = toml.load(r"C:\Users\Admin\OneDrive\Data Craft Weiterbildung\E) Aufgaben\20250729 Praxiprojekt DB - WWS\.streamlit\secrets")
+        secrets = toml.load("your toml path")
         conn = psycopg.connect(
             host=secrets["connections"]["postgres"]["host"],
             port=secrets["connections"]["postgres"]["port"],
@@ -30,7 +30,7 @@ def get_connection():
 conn = get_connection()
 cur = conn.cursor()
 
-notebook_path = Path(r"C:\Users\Admin\OneDrive\Data Craft Weiterbildung\E) Aufgaben\20250729 Praxiprojekt DB - WWS\create_complete_db_wws.ipynb")
+notebook_path = Path("your jupyter notebook path.ipynb")
 image_folder = notebook_path.parent  # Bild liegt im gleichen Ordner wie Notebook
 
 # Notebook laden
@@ -70,3 +70,4 @@ for cell in nb.cells:
                 if "text/plain" in data:
                     styled_output = f"<span style='color:Gainsboro; font-weight: bold;'>{data['text/plain']}</span>"
                     st.markdown(styled_output, unsafe_allow_html=True)
+
